@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudyTask</title>
+    <title>StudyTask - Ciências Humanas</title>
     <style>
         body {
             background-color: #8533f1;
@@ -23,14 +23,6 @@
             padding: 20px;
             box-sizing: border-box;
         }
-        .buttons-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            width: 100%;
-            max-width: 800px;
-        }
         .button {
             background-color: #ffffff;
             color: #8533f1;
@@ -45,6 +37,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            margin-bottom: 10px;
         }
         .button:hover {
             transform: translateY(-3px);
@@ -65,40 +58,48 @@
             display: none;
             flex-direction: column;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.9);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 1002;
             color: #333;
             padding: 20px;
             border-radius: 10px;
-            animation: slideIn 0.3s ease-in-out;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 500px;
         }
         .theme-options {
             display: flex;
-            justify-content: center;
-            align-items: center;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 10px;
-            margin-top: 20px;
         }
-        .theme-options button {
-            margin: 10px;
-            padding: 10px 20px;
+        .theme-button {
             border: none;
-            border-radius: 5px;
+            padding: 10px 20px;
             cursor: pointer;
-            transition: background-color 0.2s, color 0.2s;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .theme-options button:hover {
-            opacity: 0.8;
+        .theme-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .close-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5em;
+            position: absolute;
+            top: 10px;
+            right: 10px;
         }
         .logo {
             margin-bottom: 10px;
@@ -118,21 +119,15 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        .filter-button {
-            margin: 20px 0;
-            padding: 10px 20px;
-            border: none;
-            background-color: #ff7e5f;
-            color: white;
-            font-size: 1em;
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+        .filter-container {
+            margin-bottom: 20px;
         }
-        .filter-button:hover {
-            transform: translateY(-3px);
-            background-color: #feb47b;
+        .filter-select {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -144,55 +139,63 @@
         <!-- Texto animado com gradiente -->
         <div class="gradient-text">CIÊNCIAS HUMANAS 3º BIMESTRE</div>
 
-        <button class="filter-button" id="filterButton" onclick="toggleOrder()">Mostrar Antigas</button>
-        
-        <div class="buttons-wrapper" id="buttonsWrapper">
-            <button class="button" onclick="window.location.href='https://studytask-ai.github.io/12-09-CI-NCIAS-HUMANAS-/'">
-                12/09 - Ciências Humanas
-            </button>
-            <button class="button" onclick="window.location.href='https://studytask-ai.github.io/09-09-CIDADANIA-/'">
-                09/09 - Cidadania
-            </button>
-            <button class="button" onclick="window.location.href='https://sites.google.com/view/cpiadestudytask/0209-ci%C3%AAncias-humanas?authuser=0'">
-                02/09 - Ciências Humanas
-            </button>
-            <button class="button" onclick="window.location.href='https://sites.google.com/view/cpiadestudytask/ci%C3%AAncias-humanas-2308-prof-bruno?authuser=0'">
-                23/08 - Ciências Humanas
-            </button>
-            <button class="button" onclick="window.location.href='https://sites.google.com/view/cpiadestudytask/2208-ci%C3%AAncias-humanas?authuser=0'">
-                22/08 - Ciências Humanas
-            </button>
-            <button class="button" onclick="window.location.href='https://sites.google.com/view/cpiadestudytask/0908-agropecu%C3%A1ria-continua%C3%A7%C3%A3o?authuser=0'">
-                09/08 - Agropecuária Continuação
-            </button>
-            <button class="button" onclick="window.location.href='https://sites.google.com/view/cpiadestudytask/ci%C3%AAncias-humanas-0808?authuser=0'">
-                08/08 - Ciências Humanas
-            </button>
-            <button class="button" onclick="window.location.href='https://sites.google.com/view/cpiadestudytask/agropecu%C3%A1ria-ci%C3%AAncias-humanas-0108?authuser=0'">
-                01/08 - Agropecuária Ciências Humanas
-            </button>
+        <!-- Filtro por mês usando um menu suspenso -->
+        <div class="filter-container">
+            <select class="filter-select" onchange="filterByMonth(this.value)">
+                <option value="all">Todos os Meses</option>
+                <option value="08">Agosto</option>
+                <option value="09">Setembro</option>
+            </select>
         </div>
 
-        <div class="settings-icon" onclick="showThemeSetup()">⋮</div>
-        <div class="theme-setup" id="themeSetup">
-            <button class="close-button" onclick="closeThemeSetup()">✖</button>
-            <h2>Configurar Tema</h2>
-            <div class="theme-options">
-                <button style="background-color: #ff2f2f;" onclick="setTheme('#ff2f2f', '#ffffff')">Vermelho</button>
-                <button style="background-color: #ffffff; color: #000000;" onclick="setTheme('#ffffff', '#000000')">Branco</button>
-                <button style="background-color: #000000;" onclick="setTheme('#000000', '#ffffff')">Preto</button>
-                <button style="background-color: #AD7DEC;" onclick="setTheme('#AD7DEC', '#ffffff')">Lilás</button>
-                <button style="background-color: #070a08;" onclick="setTheme('#070a08', '#ffffff')">Verde Escuro</button>
-                <button style="background-color: #8533f1;" onclick="setTheme('#8533f1', '#ffffff')">Roxo</button>
-            </div>
+        <!-- Botões de links -->
+        <div class="button" data-month="09" onclick="window.location.href='https://studytask-ai.github.io/12-09-CI-NCIAS-HUMANAS-/'">
+            12/09 - Ciências Humanas
+        </div>
+        <div class="button" data-month="09" onclick="window.location.href='https://studytask-ai.github.io/09-09-CIDADANIA-/'">
+            09/09 - Cidadania
+        </div>
+        <div class="button" data-month="09" onclick="window.location.href='https://sites.google.com/view/cpiadestudytask/0209-ci%C3%AAncias-humanas?authuser=0'">
+            02/09 - Ciências Humanas
+        </div>
+        <div class="button" data-month="08" onclick="window.location.href='https://sites.google.com/view/cpiadestudytask/ci%C3%AAncias-humanas-2308-prof-bruno?authuser=0'">
+            23/08 - Ciências Humanas
+        </div>
+        <div class="button" data-month="08" onclick="window.location.href='https://sites.google.com/view/cpiadestudytask/2208-ci%C3%AAncias-humanas?authuser=0'">
+            22/08 - Ciências Humanas
+        </div>
+        <div class="button" data-month="08" onclick="window.location.href='https://sites.google.com/view/cpiadestudytask/0908-agropecu%C3%A1ria-continua%C3%A7%C3%A3o?authuser=0'">
+            09/08 - Agropecuária Continuação
+        </div>
+        <div class="button" data-month="08" onclick="window.location.href='https://sites.google.com/view/cpiadestudytask/ci%C3%AAncias-humanas-0808?authuser=0'">
+            08/08 - Ciências Humanas
+        </div>
+        <div class="button" data-month="08" onclick="window.location.href='https://sites.google.com/view/cpiadestudytask/agropecu%C3%A1ria-ci%C3%AAncias-humanas-0108?authuser=0'">
+            01/08 - Agropecuária Ciências Humanas
+        </div>
+
+        <div class="settings-icon" onclick="showThemeSetup()">⚙️</div>
+    </div>
+
+    <!-- Modal de configuração de tema -->
+    <div class="theme-setup" id="themeSetup">
+        <button class="close-button" onclick="closeThemeSetup()">✖</button>
+        <h2>Configuração de Tema</h2>
+        <div class="theme-options">
+            <button class="theme-button" style="background-color: #ff2f2f;" onclick="setTheme('#ff2f2f', '#ffffff')">Vermelho</button>
+            <button class="theme-button" style="background-color: #ffffff; color: #000000;" onclick="setTheme('#ffffff', '#000000')">Branco</button>
+            <button class="theme-button" style="background-color: #000000;" onclick="setTheme('#000000', '#ffffff')">Preto</button>
+            <button class="theme-button" style="background-color: #AD7DEC;" onclick="setTheme('#AD7DEC', '#ffffff')">Lilás</button>
+            <button class="theme-button" style="background-color: #070a08;" onclick="setTheme('#070a08', '#ffffff')">Verde Escuro</button>
+            <button class="theme-button" style="background-color: #8533f1;" onclick="setTheme('#8533f1', '#ffffff')">Roxo</button>
+            <button class="theme-button" style="background-color: #f39c12;" onclick="setTheme('#f39c12', '#ffffff')">Laranja</button>
+            <button class="theme-button" style="background-color: #3498db;" onclick="setTheme('#3498db', '#ffffff')">Azul</button>
+            <button class="theme-button" style="background-color: #2ecc71;" onclick="setTheme('#2ecc71', '#ffffff')">Verde Claro</button>
         </div>
     </div>
 
     <script>
         const themeSetup = document.getElementById('themeSetup');
-        const buttonsWrapper = document.getElementById('buttonsWrapper');
-        const filterButton = document.getElementById('filterButton');
-        let isNewestFirst = true;
 
         function showThemeSetup() {
             themeSetup.style.display = 'flex';
@@ -204,20 +207,34 @@
 
         function setTheme(bgColor, buttonColor) {
             document.body.style.backgroundColor = bgColor;
-            const buttons = document.querySelectorAll('.button');
+            const buttons = document.querySelectorAll('.button, .filter-button, .filter-select');
             buttons.forEach(button => {
                 button.style.backgroundColor = buttonColor;
                 button.style.color = bgColor;
             });
+            localStorage.setItem('theme', JSON.stringify({ bgColor, buttonColor }));
         }
 
-        function toggleOrder() {
-            const buttons = Array.from(buttonsWrapper.children);
-            buttons.reverse();
-            buttons.forEach(button => buttonsWrapper.appendChild(button));
-            isNewestFirst = !isNewestFirst;
-            filterButton.textContent = isNewestFirst ? 'Mostrar Antigas' : 'Mostrar Recentes';
+        function applyStoredTheme() {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                const { bgColor, buttonColor } = JSON.parse(storedTheme);
+                setTheme(bgColor, buttonColor);
+            }
         }
+
+        function filterByMonth(month) {
+            const buttons = document.querySelectorAll('.button[data-month]');
+            buttons.forEach(button => {
+                if (month === 'all' || button.getAttribute('data-month') === month) {
+                    button.style.display = 'block';
+                } else {
+                    button.style.display = 'none';
+                }
+            });
+        }
+
+        window.onload = applyStoredTheme;
     </script>
 </body>
 </html>
